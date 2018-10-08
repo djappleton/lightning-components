@@ -1,0 +1,25 @@
+/*
+ * Object that should contain any generic functions regarding Salesforce Objects. 
+ */
+public class ObjectController {
+
+    /*
+     * Method that will return a List of Strings representing a the values held within an Object property.
+     */
+    @AuraEnabled        
+    public static List<String> getPropertyValues(String objectType, String objectProperty){
+        
+        List<String> retList = new List<String>();
+        Schema.SObjectType obj = Schema.getGlobalDescribe().get(objectType);
+        Schema.DescribeSObjectResult res = obj.getDescribe();
+        Schema.DescribeFieldResult fld = res.fields.getMap().get(objectProperty).getDescribe();
+        
+        List<Schema.PicklistEntry> ple = fld.getPicklistValues();
+        for( Schema.PicklistEntry val : ple){
+            retList.add(val.getLabel());
+        }     
+        
+        return retList;
+    }
+    
+}

@@ -1,0 +1,14 @@
+<aura:component controller="ObjectController" >
+    
+    <!-- The API Name of the Object that you would like to get the list from//-->
+    <aura:attribute name="sObjectName" type="String" />
+    
+    <!-- The API name of the object property from which you would like to get the list data //-->
+    <aura:attribute name="sObjectProperty" type="String" />
+    
+    <!-- The final resting place of the values returned from the function //-->
+    <aura:attribute name="values" type="Object" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+</aura:component>

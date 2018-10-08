@@ -1,0 +1,24 @@
+public class RecordTypeController {
+	
+    @AuraEnabled        
+    public static List<List<String>> getRecordTypeInfos(String objectType){
+        
+        List<List<String>> recordTypeNames = new List<List<String>>();
+        
+        Schema.SObjectType obj = Schema.getGlobalDescribe().get(objectType);
+        Schema.DescribeSObjectResult objDesc = obj.getDescribe();
+        List<Schema.RecordTypeInfo> recordTypeInfos = objDesc.getRecordTypeInfos(); 
+        
+        for( Schema.RecordTypeInfo rt : recordTypeInfos){
+            List<String> item = new List<String>();
+            item.add(rt.getRecordTypeId());
+            item.add(rt.getName());
+            
+            recordTypeNames.add(item);
+        }     
+        
+        return recordTypeNames;
+        
+    }
+    
+}

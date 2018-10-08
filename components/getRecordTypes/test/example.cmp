@@ -1,0 +1,13 @@
+<aura:component>
+
+	<aura:attribute name="recordTypeNames" type="Object" />
+	<c:recordTypeValues sObjectName="Contact" values="{!v.recordTypeNames}" />
+
+	<lightning:select aura:id="filterRecordType" name="filterRecordType" label="Record Type" tabindex="10">
+	    <option value="">Please select a record type.</option>
+	    <aura:iteration items="{!v.recordTypeNames}" var="item">
+	        <option value="{!item[0]}">{!item[1]}</option>
+	    </aura:iteration>
+	</lightning:select>  
+
+</aura:component>
